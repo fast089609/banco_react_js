@@ -1,6 +1,9 @@
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faSackDollar } from '@fortawesome/free-solid-svg-icons'
+import { faObjectGroup } from '@fortawesome/free-regular-svg-icons'
 import React from 'react'
 
 
@@ -25,21 +28,15 @@ const Navbar = () => {
       <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
         <ul className="list-reset lg:flex justify-end flex-1 items-center">
           <li className="mr-3">
-            <a className="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Active</a>
+            <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold" href="#"> <FontAwesomeIcon icon={faUsers}  className="mr-3"/> Acerca de nosotros</a>
           </li>
           <li className="mr-3">
-            <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a>
+            <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold" href="#"><FontAwesomeIcon icon={faSackDollar}  className="mr-3"/> Cambia tu moneda</a>
           </li>
           <li className="mr-3">
-            <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="#">link</a>
+            <a className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold" href="#"> <FontAwesomeIcon icon={faObjectGroup}  className="mr-3"/> Productos y servicios</a>
           </li>
         </ul>
-        <button
-          id="navAction"
-          className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-        >
-          Action
-        </button>
       </div>
     </div>
     <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
