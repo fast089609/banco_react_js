@@ -1,49 +1,57 @@
-import React from 'react'
-import slide1 from '../images/slider_1.jpg'
-import slide2 from '../images/slider_2.jpg'
-import slide3 from '../images/slider_3.jpg'
-import slide4 from '../images/slider_4.jpg'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCube, EffectFade, EffectFlip, EffectCoverflow } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cube";
+import "swiper/css/effect-flip";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-fade";
 
+//importo las imagenes
+import imagen1 from '../images/slider_1.jpg';
+import imagen2 from '../images/slider_2.jpg';
+import imagen3 from '../images/slider_3.jpg';
+import imagen4 from '../images/slider_4.jpg';
+
+import React from "react";
+
+
+const getEffects = () => {
+    var numero_aleatorio = parseInt(Math.random() * (5 - 1) + 1);
+    switch (numero_aleatorio) {
+        case 1:
+                return 'flip';
+            break;
+        case 2:
+                return 'cube';
+            break;
+        case 3:
+                return 'coverflow';
+            break;
+        case 4:
+                return 'fade';
+            break;
+    }
+};
 
 const Slider = () => {
 
-
   return (
-    <div id="default-carousel" className="relative" data-carousel="static">
-    <div className="overflow-hidden relative h-56 rounded-lg sm:h-64 xl:h-80 2xl:h-96">
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <span className="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-            <img src={slide1} className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."/>
-        </div>
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src={slide2} className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."/>
-        </div>
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src={slide3} className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."/>
-        </div>
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src={slide4} className="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="..."/>
-        </div>
-    </div>
-    <div className="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2">
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-    </div>
-    <button type="button" className="flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span className="hidden">Previous</span>
-        </span>
-    </button>
-    <button type="button" className="flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer group focus:outline-none" data-carousel-next>
-        <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            <span className="hidden">Next</span>
-        </span>
-    </button>
-</div>
-  )
-}
+    <Swiper effect={getEffects()} spaceBetween={0} slidesPerView={1} loop={true} autoplay={{delay: 2000}} modules={[Autoplay, EffectCube, EffectFade, EffectFlip, EffectCoverflow]} className="mt-14">
+      <SwiperSlide>
+        <img src={imagen1} className="w-full h-96"/>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src={imagen2} className="w-full h-96"/>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src={imagen3} className="w-full h-96"/>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src={imagen4} className="w-full h-96"/>
+      </SwiperSlide>
+    </Swiper>
+  );
+};
 
-export default Slider
+export default Slider;
