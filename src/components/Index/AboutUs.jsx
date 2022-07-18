@@ -1,6 +1,6 @@
 import React from "react";
-import "../css/about.css";
-import bancovertica from "../images/banco_vertical.jpg";
+import "./../../css/about.css";
+import bancovertica from "./../../images/banco_vertical.jpg";
 
 const AboutUs = () => {
   return (

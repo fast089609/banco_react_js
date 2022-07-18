@@ -1,5 +1,5 @@
 import React from "react";
-import banco from '../images/banco_pide_ya.png'
+import banco from './../../images/banco_pide_ya.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-icons";

@@ -8,10 +8,10 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/effect-fade";
 
 //importo las imagenes
-import imagen1 from '../images/slider_1.jpg';
-import imagen2 from '../images/slider_2.jpg';
-import imagen3 from '../images/slider_3.jpg';
-import imagen4 from '../images/slider_4.jpg';
+import imagen1 from './../../images/slider_1.jpg';
+import imagen2 from './../../images/slider_2.jpg';
+import imagen3 from './../../images/slider_3.jpg';
+import imagen4 from './../../images/slider_4.jpg';
 
 import React from "react";
 
