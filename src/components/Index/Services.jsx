@@ -1,7 +1,7 @@
 import React from "react";
-import conoce_economia from "../images/conoce_economia.jpg";
-import cambia_moneda from "../images/cambia_la_moneda.jpg";
-import productos_servicios from "../images/productos_servicios.png";
+import conoce_economia from "./../../images/conoce_economia.jpg";
+import cambia_moneda from "./../../images/cambia_la_moneda.jpg";
+import productos_servicios from "./../../images/productos_servicios.png";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

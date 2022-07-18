@@ -5,6 +5,7 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faSackDollar } from "@fortawesome/free-solid-svg-icons";
 import { faObjectGroup } from "@fortawesome/free-regular-svg-icons";
 import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -14,13 +15,13 @@ const Navbar = () => {
     >
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="pl-4 flex items-center">
-          <a
+          <Link
+            to="/"
             className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-            href="#"
           >
             <FontAwesomeIcon icon={faBuildingColumns} className="mr-3" />
             Banco Pide Ya
-          </a>
+          </Link>
         </div>
         <div className="block lg:hidden pr-4">
           <button
@@ -43,33 +44,31 @@ const Navbar = () => {
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             <li className="mr-3">
-              <a
+              <Link
+                to="/about_us"
                 className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
-                href="#"
               >
-                {" "}
                 <FontAwesomeIcon icon={faUsers} className="mr-3" /> Acerca de
                 nosotros
-              </a>
+              </Link>
             </li>
             <li className="mr-3">
-              <a
+              <Link
+                to="/change_money"
                 className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
-                href="#"
               >
                 <FontAwesomeIcon icon={faSackDollar} className="mr-3" /> Cambia
                 tu moneda
-              </a>
+              </Link>
             </li>
             <li className="mr-3">
-              <a
+              <Link
+                to="/services"
                 className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
-                href="#"
               >
-                {" "}
                 <FontAwesomeIcon icon={faObjectGroup} className="mr-3" />{" "}
                 Productos y servicios
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
