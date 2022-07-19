@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slider from '../Index/Slider'
 import Services from '../Index/Services'
 import LineButton from '../Index/LineButton'
@@ -8,6 +8,9 @@ import Footer from '../layouts/Footer'
 import AboutUs from '../Index/AboutUs'
 
 const Index = () => {
+  useEffect(() =>{
+    document.title= `Banco Pide Ya`
+  }, []); 
   return (
     <div>
       <Navbar></Navbar>

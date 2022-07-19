@@ -1,84 +1,77 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import CardNotices from "./CardNotices";
 
 const Notices = () => {
+  const [noticias, setNoticias] = useState([]);
+
+  const consultarApi = async () => {
+    const url =
+      "https://newsapi.org/v2/top-headlines?country=co&category=business&apiKey=cb61d2ce82164777a4788d00027a262b";
+    const respuesta = await fetch(url);
+    const resultado = await respuesta.json();
+    console.log(resultado);
+    const arraynoticias = resultado.articles.map((noticia) => {
+      const objeto = {
+        titulo: noticia.title,
+        url: noticia.url,
+        imagen: noticia.urlToImage,
+        descripcion: noticia.description,
+      };
+      return objeto;
+    });
+    setNoticias(arraynoticias);
+    console.log(arraynoticias);
+  };
+
+  useEffect(() => {
+    consultarApi();
+  }, []);
+
   return (
     <div className="w-full">
-          <div className="w-full mt-14">
-        <h1 className="text-center text-green-400 text-3xl font-bold">Lo ultimo en noticias ...</h1>
+      <div className="w-full mt-14">
+        <h1 className="text-center text-green-400 text-3xl font-bold">
+          Lo ultimo en noticias ...
+        </h1>
       </div>
-    <div className="w-full px-5 lg:mx-auto lg:w-3/4">
-    <div className="grid grid-cols-1 gap-14 mt-5 md:grid-cols-3 xl:grid-cols-3">
-        <div class="flex justify-center">
-          <div class="rounded-lg shadow-lg shadow-gray-600 bg-white max-w-sm">
-            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img
-                class="rounded-t-lg"
-                src="https://mdbootstrap.com/img/new/standard/nature/182.jpg"
-                alt=""
-              />
-            </a>
-            <div class="p-6 text-center">
-              <h5 class="text-gray-900 text-xl font-bold mb-2">Notica 1</h5>
-              <p class="text-gray-700 text-base mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-              </p>
-              <button
-                type="button"
-                class=" inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-md leading-tight capitalize rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                leer mas
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg shadow-lg shadow-gray-600 bg-white max-w-sm">
-            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img
-                class="rounded-t-lg"
-                src="https://mdbootstrap.com/img/new/standard/nature/182.jpg"
-                alt=""
-              />
-            </a>
-            <div class="p-6 text-center">
-              <h5 class="text-gray-900 text-xl font-bold mb-2">Notica 2</h5>
-              <p class="text-gray-700 text-base mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-              </p>
-              <button
-                type="button"
-                class=" inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-md leading-tight capitalize rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                leer mas
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="rounded-lg shadow-lg shadow-gray-600 bg-white max-w-sm">
-            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-              <img
-                class="rounded-t-lg"
-                src="https://mdbootstrap.com/img/new/standard/nature/182.jpg"
-                alt=""
-              />
-            </a>
-            <div class="p-6 text-center">
-              <h5 class="text-gray-900 text-xl font-bold mb-2">Notica 3</h5>
-              <p class="text-gray-700 text-base mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when
-              </p>
-              <button
-                type="button"
-                class=" inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-md leading-tight capitalize rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out"
-              >
-                leer mas
-              </button>
-            </div>
-          </div>
-        </div>
+      <div className="w-full px-5 lg:mx-auto lg:w-3/4">
+        <Swiper
+          modules={[Autoplay]}
+          spaceBetween={50}
+          slidesPerView={3}
+          autoplay={{ delay: 2000 }}
+          loop={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            530: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1240: {
+              slidesPerView: 3,
+              spaceBetween: 50,
+            },
+            1920: {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }}
+        >
+          {noticias.map((noticia) => (
+            <SwiperSlide className="self-center">
+              <CardNotices noticia={noticia}></CardNotices>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </div>
     </div>
   );
 };

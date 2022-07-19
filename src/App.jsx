@@ -7,13 +7,12 @@ import Services from './components/Secciones/Services';
 import ChangeMoney from './components/Secciones/ChangeMoney';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/about_us" element={<AboutUs />} />
+        <Route path="/about_us"  element={<AboutUs />}/>
         <Route path="/change_money" element={<ChangeMoney />} />
         <Route path="/services" element={<Services />} />
       </Routes>

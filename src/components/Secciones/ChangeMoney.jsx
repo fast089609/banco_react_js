@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import Navbar from "../layouts/Navbar";
 
 const ChangeMoney = () => {
-  return (
-    <div>ChangeMoney</div>
-  )
-}
+    useEffect(() =>{
+        document.title= `Banco Pide Ya - Cambia tu moneda`
+      }, []);     
 
-export default ChangeMoney
+  return (
+    <div>
+      <Navbar />
+      <div className="mt-20 text-red-700">Cambiar de moneda</div>
+    </div>
+  );
+};
+
+export default ChangeMoney;

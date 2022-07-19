@@ -6,17 +6,17 @@ import { faFacebook, faGoogle, faInstagram } from "@fortawesome/free-brands-svg-
 
 const Footer = () => {
   return (
-      <div class="w-full mt-16 mx-auto">
-        <footer class="p-4 bg-gray-200 sm:p-6">
-          <div class="md:flex md:justify-between">
-            <div class="mb-2 md:mb-0">
-              <a href="#" target="_blank" class="flex items-center">
+      <div className="w-full mt-16 mx-auto">
+        <footer className="p-4 bg-gray-200 sm:p-6">
+          <div className="md:flex md:justify-between">
+            <div className="mb-2 md:mb-0">
+              <a href="#" target="_blank" className="flex items-center">
                 <img
                   src={banco}
-                  class="mr-4 h-10"
+                  className="mr-4 h-10"
                   alt="FlowBite Logo"
                 />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                   Banco Pide Ya
                 </span>
               </a>
@@ -26,19 +26,19 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faGoogle} className="mr-5 text-3xl text-red-500" />
                 <FontAwesomeIcon icon={faInstagram} className=" text-3xl text-indigo-600" />
             </div>
-            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   Acerca de nosotros
                 </h3>
               </div>
               <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   Cambia tu moneda
                 </h3>
               </div>
               <div>
-                <h3 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
                   Productos y servicios
                 </h3>
               </div>
