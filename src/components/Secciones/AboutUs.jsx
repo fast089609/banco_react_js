@@ -1,5 +1,8 @@
+import Footer from "../layouts/Footer";
 import React, { useEffect } from "react";
 import Navbar from "../layouts/Navbar";
+import Principios from "../About_us/Principios";
+import Team from "../About_us/Team";
 
 const AboutUs = () => {
   useEffect(() => {
@@ -8,7 +11,9 @@ const AboutUs = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-20 text-red-700">Sobre noisotros</div>
+      <Principios />
+      <Team />
+      <Footer />
     </div>
   );
 };

@@ -25,7 +25,6 @@ const Notices = () => {
       return objeto;
     });
     setNoticias(arraynoticias);
-    console.log(arraynoticias);
   };
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const Notices = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full" id="loultimoennoticias">
       <div className="w-full mt-14">
         <h1 className="text-center text-green-400 text-3xl font-bold">
           Lo ultimo en noticias ...
