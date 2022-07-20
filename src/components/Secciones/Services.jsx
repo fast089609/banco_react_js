@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
+import Service from "../Services/Service";
 
 const Services = () => {
     useEffect(() =>{
@@ -8,7 +10,8 @@ const Services = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-20 text-red-700">Servicios</div>
+      <Service/>
+      <Footer/>
     </div>
   );
 };
