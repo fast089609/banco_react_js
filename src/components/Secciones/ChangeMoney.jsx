@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import InforCambiaMoneda from "../Changemoney/InforCambiaMoneda";
+import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
 
 const ChangeMoney = () => {
@@ -9,7 +11,8 @@ const ChangeMoney = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-20 text-red-700">Cambiar de moneda</div>
+      <InforCambiaMoneda/>
+      <Footer/>
     </div>
   );
 };
