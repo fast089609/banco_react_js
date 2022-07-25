@@ -2,6 +2,7 @@ import React from "react";
 import fotofabian from "./../../images/foto_fabian.jpg";
 import fotojulian from "./../../images/foto_julian.jpg";
 import fotoyuliana from "./../../images/foto_yuliana.jpg";
+import fotojhonier from "./../../images/foto_jhonier.jpg";
 
 const Team = () => {
   return (
@@ -211,7 +212,7 @@ const Team = () => {
                 <div className="absolute -mt-20 w-full flex justify-center">
                   <div className="h-32 w-32">
                     <img
-                      src="https://cdn.tuk.dev/assets/photo-1564061170517-d3907caa96ea.jfif"
+                      src={fotojhonier}
                       alt="Display Picture of Andres Berlin"
                       role="img"
                       className="rounded-full object-cover h-full w-full shadow-2xl"
@@ -220,15 +221,15 @@ const Team = () => {
                 </div>
                 <div className="px-6 mt-16">
                   <h1 className="font-bold dark:text-white text-3xl text-center mb-1">
-                    Andres Berlin
+                    Jhonier Rojas
                   </h1>
                   <p className="text-gray-800 dark:text-white text-sm text-center">
-                    Chief Executive Officer
+                    Gestor de proyecto
                   </p>
                   <p className="text-center text-gray-600 dark:text-gray-200 text-base pt-3 font-normal">
-                    The CEO's role in raising a company's corporate IQ is to
-                    establish an atmosphere that promotes knowledge sharing and
-                    collaboration.
+                  Los Desarrolladores de Software o de Sistemas trabajan para firmas y empresas dedicadas al ramo 
+                  de la Computación. Se encargan de desarrollar los pilares de los sistemas operativos que son creados 
+                  por los Programadores y de probar el código de nuevos programas para garantizar su eficiencia.
                   </p>
                   <div className="w-full flex justify-center pt-5 pb-5">
                     <a
