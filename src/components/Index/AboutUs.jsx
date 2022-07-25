@@ -10,26 +10,22 @@ const AboutUs = () => {
           <div className="grid lg:grid-cols-2 flex items-center">
             <div className="mb-12 lg:mb-0">
               <div className="block rounded-lg shadow-lg px-6 py-12 md:px-12 lg:-mr-14 about_us_info">
-                <h2 className="text-3xl font-bold mb-6">Enjoy the moment</h2>
+                <h2 className="text-3xl font-bold mb-6">Banco Pide ya</h2>
                 <p className="text-gray-500 mb-6 pb-2 lg:pb-0">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A
-                  soluta corporis voluptate ab error quam dolores doloremque,
-                  quae consectetur.
+                Nuestra empresa enfocada en el sector del sistema financiero, o el departamento de una entidad
+                crediticia, especializado en financiar compañías y personas. Ofreciendo diversos
+                productos y servicios. Esto, con el fin de que la firmas puedan expandir su actividad comercial,
+                realizar distintas inversiones y prosperar cada dia.
                 </p>
                 <p className="text-gray-500 mb-0">
-                  In ac turpis justo. Vivamus auctor quam vitae odio feugiat
-                  pulvinar. Sed semper ligula sed lorem tincidunt dignissim. Nam
-                  sed cursus lectus. Proin non rutrum magna. Proin gravida,
-                  justo et imperdiet tristique, turpis nisi viverra est, nec
-                  posuere ex arcu sit amet erat. Sed a dictum sem. Duis pretium
-                  condimentum nulla, ut aliquet erat auctor sed. Aenean
-                  facilisis neque id ligula maximus scelerisque. Nunc sed velit
-                  rhoncus, interdum dolor at, lacinia lacus. Proin eleifend
-                  viverra posuere. Ut commodo risus lacus, ac scelerisque quam
-                  aliquam dictum. Etiam dignissim pulvinar eros eget auctor.
-                  Quisque congue turpis quis libero ullamcorper imperdiet.
-                  Vivamus a orci maximus, dignissim ligula a, congue dui. Morbi
-                  et lectus sit amet neque luctus viverra.
+                La empresa opera a través de cinco segmentos: banca personal, banca para pymes, 
+                banca corporativa, banca preferencial y servicios de microfinanza. Sus productos y 
+                servicios de banca personal consisten en cuentas corriente y de ahorro, tarjetas de 
+                crédito y débito, depósitos a plazo fijo, créditos comerciales y de consumo, entre 
+                otros. El banco también ofrece una serie de servicios de banca corporativa que incluyen
+                soluciones de liquidez e inversión, soluciones financieras (capital de trabajo, créditos
+                de fomento y garantías bancarias), comercio exterior, leasing, productos de inversión y 
+                fiducia de administración
                 </p>
               </div>
             </div>
