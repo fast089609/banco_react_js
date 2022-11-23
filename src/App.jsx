@@ -5,6 +5,7 @@ import Index from './components/Secciones/Index'
 import AboutUs from './components/Secciones/AboutUs';
 import Services from './components/Secciones/Services';
 import ChangeMoney from './components/Secciones/ChangeMoney';
+import LoginRegister from './components/Secciones/LoginRegister';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/about_us"  element={<AboutUs />}/>
         <Route path="/change_money" element={<ChangeMoney />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/loginRegister" element={<LoginRegister />} />
       </Routes>
     </div>
   )

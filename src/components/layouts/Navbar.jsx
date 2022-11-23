@@ -1,4 +1,4 @@
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
@@ -68,6 +68,15 @@ const Navbar = () => {
               >
                 <FontAwesomeIcon icon={faObjectGroup} className="mr-3" />{" "}
                 Productos y servicios
+              </Link>
+            </li>
+            <li className="mr-3">
+              <Link
+                to="/loginRegister"
+                className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
+              >
+                <FontAwesomeIcon icon={faUser} className="mr-3" />{" "}
+                Ingresa/Registrate
               </Link>
             </li>
           </ul>
