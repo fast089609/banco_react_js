@@ -6,6 +6,7 @@ import AboutUs from './components/Secciones/AboutUs';
 import Services from './components/Secciones/Services';
 import ChangeMoney from './components/Secciones/ChangeMoney';
 import LoginRegister from './components/Secciones/LoginRegister';
+import IndexDash from './components/Secciones/Dash/Index';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/change_money" element={<ChangeMoney />} />
         <Route path="/services" element={<Services />} />
         <Route path="/loginRegister" element={<LoginRegister />} />
+        <Route path="/dash/*" element={<IndexDash />} />
       </Routes>
     </div>
   )
