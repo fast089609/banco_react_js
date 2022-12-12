@@ -4,10 +4,17 @@ import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faSackDollar } from "@fortawesome/free-solid-svg-icons";
 import { faObjectGroup } from "@fortawesome/free-regular-svg-icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import UserMenu from "./UserMenu";
+import { validateAuth } from "../utils/Utils";
 
 const Navbar = () => {
+    const [autenticado, setAutenticado] = useState(false);
+    
+    useEffect(() => {
+      setAutenticado(validateAuth());
+    });
   return (
     <nav
       id="header"
@@ -70,7 +77,7 @@ const Navbar = () => {
                 Productos y servicios
               </Link>
             </li>
-            <li className="mr-3">
+            <li className={"mr-3 " + (autenticado == true ? 'hidden' : '')} >
               <Link
                 to="/loginRegister"
                 className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
@@ -78,6 +85,9 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faUser} className="mr-3" />{" "}
                 Ingresa/Registrate
               </Link>
+            </li>
+            <li className={"mr-3 " + (autenticado == true ? '' : 'hidden')}>
+              <UserMenu />
             </li>
           </ul>
         </div>

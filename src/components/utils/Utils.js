@@ -27,3 +27,28 @@ export const formatValue = (value) => Intl.NumberFormat('en-US', {
   maximumSignificantDigits: 3,
   notation: 'compact',
 }).format(value);
+
+
+export const validateAuth = () => {
+  if(localStorage.getItem('auth')){
+    var info_user = JSON.parse(localStorage.getItem('auth'));
+    if(info_user.token != undefined){
+      return true;
+    }
+  }
+  return false;
+}
+
+export const validateRol = (rol_name) => {
+  if(validateAuth()){
+    var info_user = JSON.parse(localStorage.getItem('auth'));
+    var esta = false;
+    info_user.roles.forEach(rol => {
+      if(rol.nombre == rol_name){
+        esta = true;
+      }
+    });
+    return esta;
+  }
+  return false;
+}

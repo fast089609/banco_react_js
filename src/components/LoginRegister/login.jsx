@@ -1,12 +1,28 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Route, useNavigate } from "react-router-dom";
+import { validateAuth, validateRol } from "../utils/Utils";
 
 const Login = ({cambiarRegister}) => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(validateAuth()){
+      if(validateRol("administrador")){
+        navigate('/dash');
+      }else{
+        navigate('/');
+      }
+    }
+  });
 
   const [datos, setDatos] = useState({
     'email': '',
     'password': '',
   });
+
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     let {name, value} = e.target;
@@ -22,22 +38,32 @@ const Login = ({cambiarRegister}) => {
       const url = `http://localhost:8000/api/usuarios/login`;
       axios.post(url, datos)
         .then(function (response) {
-          console.log(response);
+          localStorage.setItem("auth", JSON.stringify(response.data));
+          if(validateRol("administrador")){
+            navigate('/dash');
+          }else{
+            navigate('/');
+          }
         })
         .catch(function (error) {
           console.log(error);
+          if(error.response.data.msg != undefined){
+            setError(error.response.data.msg);
+          }
         });
     }
   };
 
   return (
     <form onSubmit={hanndleSubmit}>
+      <div className={"mb-3 text-red-600 " + (error == '' ? '' : 'd-none')}>
+        {error}
+      </div>
       <div className="mb-6">
         <input
           type="email"
           name="email"
           className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          id="exampleFormControlInput2"
           placeholder="Email address"
           onChange={handleInputChange}
           value={datos.email}
@@ -50,7 +76,6 @@ const Login = ({cambiarRegister}) => {
           type="password"
           name="password"
           className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          id="exampleFormControlInput2"
           placeholder="Password"
           onChange={handleInputChange}
           value={datos.password}

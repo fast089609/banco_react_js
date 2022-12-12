@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Transition from '../../../utils/Transition';
+import Transition from '../utils/Transition';
 
-import UserAvatar from '../../../../images/foto_julian.jpg';
+import UserAvatar from '../../images/foto_julian.jpg';
 import { faClose, faCog, faCogs, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -42,7 +42,7 @@ function UserMenu() {
     <div className="relative inline-flex">
       <button
         ref={trigger}
-        className="inline-flex justify-center items-center group"
+        className="inline-flex justify-center items-center groupn hover:text-gray-800 hover:text-underline py-2 px-4 hover:bg-green-900 hover:text-white hover:rounded-lg font-bold"
         aria-haspopup="true"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
@@ -50,7 +50,7 @@ function UserMenu() {
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-semibold group-hover:text-slate-800">{info_user.nombre}</span>
-          <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">
+          <svg className="w-3 h-3 shrink-0 ml-1 fill-current " viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
         </div>
@@ -73,7 +73,7 @@ function UserMenu() {
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="text-slate-800 font-semibold">{info_user.nombre}</div>
-            <div className="text-xs text-slate-500 italic">Administrador</div>
+            <div className="text-xs text-slate-500 italic">Cliente</div>
           </div>
           <ul>
             <li>
