@@ -10,6 +10,7 @@ import IndexDash from './components/Secciones/Dash/Index';
 import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import AccesoNoAutorizado from './components/layouts/AccesoNoAutorizado';
 import CloseSesion from './components/utils/CloseSesion';
+import Configuracion from './components/Secciones/Configuracion';
 
 
 function App() {
@@ -22,6 +23,11 @@ function App() {
         <Route path="/change_money" element={<ChangeMoney />} />
         <Route path="/services" element={<Services />} />
         <Route path="/loginRegister" element={<LoginRegister />} />
+        <Route path="/configuracion" element={
+          <ProtectedRoute>
+            <Configuracion />
+          </ProtectedRoute>
+        } />
         <Route path="/acceso_no_autorizado" element={<AccesoNoAutorizado />} />
         <Route path="/dash/*" element={
           <ProtectedRoute roles={['administrador']}>

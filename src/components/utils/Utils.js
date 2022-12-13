@@ -52,3 +52,17 @@ export const validateRol = (rol_name) => {
   }
   return false;
 }
+
+export const  formatDate = function(dateProperty) {
+  const newDate = new Date(dateProperty);
+  let formattedDate = `${ newDate.getFullYear() }-`;
+      formattedDate += `${ `0${ newDate.getMonth() + 1 }`.slice(-2) }-`;  // for double digit month
+      formattedDate += `${ `0${ newDate.getDate() }`.slice(-2) }`;        // for double digit day
+  return formattedDate;
+}
+
+
+export const converterImage = (img, extension) => {
+  var img = Buffer.from(img).toString('base64');
+  return "data:" + extension + ";base64," + img;
+}

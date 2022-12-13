@@ -79,7 +79,7 @@ function UserMenu() {
             <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3 hover:bg-green-100 cursor-pointer"
-                to="/"
+                to="/configuracion"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <FontAwesomeIcon icon={faCog} className="mr-3" /> Configuracion

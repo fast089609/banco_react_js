@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
+import helpAxios from "../utils/helpAxios";
 import { validateAuth, validateRol } from "../utils/Utils";
 
 const Login = ({cambiarRegister}) => {
@@ -35,8 +36,7 @@ const Login = ({cambiarRegister}) => {
     if(!e.target.checkValidity()){
       console.log("no validado");
     }else{
-      const url = `http://localhost:8000/api/usuarios/login`;
-      axios.post(url, datos)
+      helpAxios(false).post('/api/usuarios/login', datos)
         .then(function (response) {
           localStorage.setItem("auth", JSON.stringify(response.data));
           if(validateRol("administrador")){

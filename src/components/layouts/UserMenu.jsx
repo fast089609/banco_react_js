@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../../images/foto_julian.jpg';
-import { faClose, faCog, faCogs, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faClose, faCog, faCogs, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { validateRol } from '../utils/Utils';
 
 function UserMenu() {
 
@@ -73,13 +74,22 @@ function UserMenu() {
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="text-slate-800 font-semibold">{info_user.nombre}</div>
-            <div className="text-xs text-slate-500 italic">Cliente</div>
+            <div className="text-xs text-slate-500 italic">{validateRol("administrador") ? 'Administrador' : 'Cliente'}</div>
           </div>
           <ul>
+            <li className={validateRol("administrador") ? '' : 'hidden'}>
+              <Link
+                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3 hover:bg-green-100 cursor-pointer"
+                to="/configuracion"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                <FontAwesomeIcon icon={faBuilding} className="mr-3" /> Dash
+              </Link>
+            </li>
             <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3 hover:bg-green-100 cursor-pointer"
-                to="/"
+                to="/configuracion"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <FontAwesomeIcon icon={faCog} className="mr-3" /> Configuracion
