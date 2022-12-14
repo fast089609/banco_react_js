@@ -11,7 +11,7 @@ function Header({
 
   return (
     <header className="sticky top-0 bg-green-50 border-b border-slate-200 z-30 shadow-lg">
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 xl:px-8">
         <div className="flex items-center justify-between h-16 -mb-px">
 
           {/* Header: Left side */}
@@ -19,7 +19,7 @@ function Header({
 
             {/* Boton para mostrar menu izquierdo */}
             <button
-              className="text-slate-500 hover:text-slate-600 lg:hidden"
+              className="text-slate-500 hover:text-slate-600 xl:hidden"
               aria-controls="sidebar"
               aria-expanded={sidebarOpen}
               onClick={(e) => { e.stopPropagation(); setSidebarOpen(!sidebarOpen); }}

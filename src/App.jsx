@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react'
+import { useState, createContext, useEffect } from 'react'
 import './App.css'
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Index from './components/Secciones/Index'
@@ -15,6 +15,9 @@ import Configuracion from './components/Secciones/Configuracion';
 
 function App() {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.URL_API_BACKEND = "http://localhost:8000/";
+  })
   return (
     <div className="App">
       <Routes>

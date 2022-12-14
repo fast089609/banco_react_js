@@ -5,6 +5,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import Dash from './content/inicio/Dash';
 import Moneys from './content/moneda/Moneys';
 import MoneysMovement from './content/moneda/MoneysMovement';
+import TableUsuarios from './content/usuarios/TableUsuarios';
+import CreateUsuarios from './content/usuarios/CreateUsuarios';
 
 const Index = () => {
 
@@ -30,6 +32,8 @@ const Index = () => {
               <Route path="/" element={<Dash setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/moneys" element={<Moneys setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/moneys/movement" element={<MoneysMovement setSeccionTitle={setSeccionTitle}/>} />
+              <Route path="/config/usuarios" element={<TableUsuarios setSeccionTitle={setSeccionTitle}/>} />
+              <Route path="/config/usuarios/create" element={<CreateUsuarios setSeccionTitle={setSeccionTitle}/>} />
             </Routes>
           </div>
         </main>

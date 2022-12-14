@@ -80,8 +80,9 @@ const Configuracion = () => {
           .then(function ({data}) {
             data.fecha_nacimiento = formatDate(data.fecha_nacimiento);
             setDatos(data);
+            
             if(data.avatar != undefined){
-                obtenerAvatar(data.avatar);
+              setAvatar(window.URL_API_BACKEND + "storage/img_users/" + data.avatar);
             }
           })
           .catch(function (error) {

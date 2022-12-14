@@ -55,6 +55,9 @@ export const validateRol = (rol_name) => {
 
 export const  formatDate = function(dateProperty) {
   const newDate = new Date(dateProperty);
+  if(newDate == 'Invalid Date'){
+    return '';
+  }
   let formattedDate = `${ newDate.getFullYear() }-`;
       formattedDate += `${ `0${ newDate.getMonth() + 1 }`.slice(-2) }-`;  // for double digit month
       formattedDate += `${ `0${ newDate.getDate() }`.slice(-2) }`;        // for double digit day
