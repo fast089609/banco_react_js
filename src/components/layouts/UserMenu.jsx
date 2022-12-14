@@ -80,7 +80,7 @@ function UserMenu() {
             <li className={validateRol("administrador") ? '' : 'hidden'}>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3 hover:bg-green-100 cursor-pointer"
-                to="/configuracion"
+                to="/dash"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <FontAwesomeIcon icon={faBuilding} className="mr-3" /> Dash

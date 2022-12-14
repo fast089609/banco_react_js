@@ -93,11 +93,11 @@ const Configuracion = () => {
       }
 
       const obtenerAvatar = async(avatar) => {
-        helpAxios(true).get('/api/usuarios/getAvatar/' + avatar)
+        helpAxios(true).get('/api/usuarios/getAvatar/' + avatar, { responseType: 'blob' })
         .then(function (response) {
-          
-          console.log(converterImage(response.data, response.headers["content-type"]));
-          // setAvatar(data);
+          // console.log(URL.createObjectURL(response.data));
+          // console.log(converterImage(response.data, response.headers["content-type"]));
+          setAvatar(URL.createObjectURL(response.data));
         })
         .catch(function (error) {
           console.log(error);
