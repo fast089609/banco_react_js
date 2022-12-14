@@ -1,5 +1,6 @@
 import React from "react";
-
+import fotolealtad from "./../../images/lealtad.jpg";
+import fotohonestidad from "./../../images/honestidad.jpg";
 const Principios = () => {
   return (
     <div>
@@ -29,7 +30,7 @@ const Principios = () => {
               <div className="py-8 px-12 mb-12 bg-green-100 border-b border-green-100 transform transition duration-300 ease-in-out hover:-translate-y-2 rounded-lg cursor-pointer">
                 <div className="inline-block text-gray-900 mb-4 text-center">
                   <img
-                    src="https://diariolibre.blob.core.windows.net.optimalcdn.com/images/binrepository/shu-lealtad-736632175_12475001_20191024114124.jpg"
+                    src={fotolealtad}
                     className="w-28 h-28 mx-auto rounded-full"
                   />
                 </div>
@@ -54,7 +55,7 @@ const Principios = () => {
               <div className="py-8 px-12 mb-12 bg-green-100 border-b border-green-100 transform transition duration-300 ease-in-out hover:-translate-y-2 rounded-lg cursor-pointer">
                 <div className="inline-block text-gray-900 mb-4 text-center">
                   <img
-                    src="https://www.armstrong.com.mx/wp-content/themes/yootheme/cache/honestidad-58195f2f.jpeg"
+                    src={fotohonestidad}
                     className="w-28 h-28 mx-auto rounded-full"
                   />
                 </div>
