@@ -15,6 +15,9 @@ const TableUsuarios = ({setSeccionTitle}) => {
 
     const [usuarios, setUsuarios] = useState([]);
 
+    const cambiarImagenAvatar = (e) => {
+        e.target.src = "/src/images/avatar.png";
+    }
 
     const obtenerUsuarios = async() => {
         helpAxios(true).get('/api/usuarios/obtenerUsuarios')
@@ -99,7 +102,7 @@ const TableUsuarios = ({setSeccionTitle}) => {
                             <tr className='' key={usuario._id}>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center space-x-3 justify-center">
-                                        <div className="inline-flex w-10 h-10"> <img className='w-10 h-10 object-cover rounded-full' alt='User avatar' src={usuario.avatar} /> </div>
+                                        <div className="inline-flex w-10 h-10"> <img className='w-10 h-10 object-cover rounded-full' alt='User avatar' onError={cambiarImagenAvatar} src={usuario.avatar} /> </div>
                                         <div>
                                             <p> {usuario.nombre} </p>
                                             <p className="text-gray-500 text-sm font-semibold tracking-wide"> {usuario.email} </p>
@@ -126,7 +129,11 @@ const TableUsuarios = ({setSeccionTitle}) => {
                                 <td className="px-6 py-4 text-center"> <span className={"text-white text-sm w-1/3 pb-1 font-semibold px-2 rounded-full "  + (usuario.confirmado == true ? 'bg-green-700' : 'bg-red-500')}> {usuario.confirmado == true ? 'Activo' : 'Inactivo'} </span> </td>
                                 <td className="text-center">
                                     <div className='flex justify-center'>
+                                        <Link
+                                            to={"/dash/config/usuarios/edit/"+usuario._id}
+                                        >
                                         <img src={editar} className="w-6 mx-2 cursor-pointer"/>
+                                        </Link>
                                         <img src={eliminar} className="w-6 mx-2 cursor-pointer" onClick={() =>{eliminarUsuarios(usuario._id)}}/>
                                     </div>
                                 </td>

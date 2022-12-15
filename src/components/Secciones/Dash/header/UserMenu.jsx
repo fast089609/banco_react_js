@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Transition from '../../../utils/Transition';
 
-import UserAvatar from '../../../../images/foto_julian.jpg';
 import { faBuilding, faClose, faCog, faCogs, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { validateRol } from '../../../utils/Utils';
@@ -48,7 +47,7 @@ function UserMenu() {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
+        <img className="w-8 h-8 rounded-full" src={info_user.avatar != undefined ? (window.URL_API_BACKEND + "storage/img_users/" + info_user.avatar) : '/src/images/avatar.png'} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
           <span className="truncate ml-2 text-sm font-semibold group-hover:text-slate-800">{info_user.nombre}</span>
           <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12">

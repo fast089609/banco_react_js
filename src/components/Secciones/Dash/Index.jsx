@@ -7,6 +7,7 @@ import Moneys from './content/moneda/Moneys';
 import MoneysMovement from './content/moneda/MoneysMovement';
 import TableUsuarios from './content/usuarios/TableUsuarios';
 import CreateUsuarios from './content/usuarios/CreateUsuarios';
+import EditarUsuarios from './content/usuarios/EditarUsuarios';
 
 const Index = () => {
 
@@ -34,6 +35,7 @@ const Index = () => {
               <Route path="/moneys/movement" element={<MoneysMovement setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/config/usuarios" element={<TableUsuarios setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/config/usuarios/create" element={<CreateUsuarios setSeccionTitle={setSeccionTitle}/>} />
+              <Route exact path="/config/usuarios/edit/:usuario" element={ <EditarUsuarios setSeccionTitle={setSeccionTitle} />}/>
             </Routes>
           </div>
         </main>
