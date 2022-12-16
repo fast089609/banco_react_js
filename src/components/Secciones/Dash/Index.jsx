@@ -8,6 +8,8 @@ import MoneysMovement from './content/moneda/MoneysMovement';
 import TableUsuarios from './content/usuarios/TableUsuarios';
 import CreateUsuarios from './content/usuarios/CreateUsuarios';
 import EditarUsuarios from './content/usuarios/EditarUsuarios';
+import CrearMoneda from './content/moneda/CrearMoneda';
+import EditarMonedas from './content/moneda/EditarMonedas';
 
 const Index = () => {
 
@@ -32,10 +34,12 @@ const Index = () => {
             <Routes>
               <Route path="/" element={<Dash setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/moneys" element={<Moneys setSeccionTitle={setSeccionTitle}/>} />
-              <Route path="/moneys/movement" element={<MoneysMovement setSeccionTitle={setSeccionTitle}/>} />
+              <Route path="/movements" element={<MoneysMovement setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/config/usuarios" element={<TableUsuarios setSeccionTitle={setSeccionTitle}/>} />
               <Route path="/config/usuarios/create" element={<CreateUsuarios setSeccionTitle={setSeccionTitle}/>} />
               <Route exact path="/config/usuarios/edit/:usuario" element={ <EditarUsuarios setSeccionTitle={setSeccionTitle} />}/>
+              <Route path="/moneys/create" element={<CrearMoneda setSeccionTitle={setSeccionTitle}/>} />
+              <Route exact path="/moneys/edit/:moneda" element={ <EditarMonedas setSeccionTitle={setSeccionTitle} />}/>
             </Routes>
           </div>
         </main>

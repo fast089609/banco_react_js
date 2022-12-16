@@ -11,6 +11,7 @@ import { ProtectedRoute } from './components/utils/ProtectedRoute';
 import AccesoNoAutorizado from './components/layouts/AccesoNoAutorizado';
 import CloseSesion from './components/utils/CloseSesion';
 import Configuracion from './components/Secciones/Configuracion';
+import Billeteras from './components/Secciones/Billeteras';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="/acceso_no_autorizado" element={<AccesoNoAutorizado />} />
+        
         <Route path="/dash/*" element={
           <ProtectedRoute roles={['administrador']}>
             <IndexDash/>
@@ -42,6 +44,11 @@ function App() {
             <CloseSesion/>
           </ProtectedRoute>
         } />
+        <Route path="/billeteras" element={
+            <ProtectedRoute>
+              <Billeteras/>
+            </ProtectedRoute>
+          } />
       </Routes>
     </div>
   )

@@ -6,7 +6,9 @@ const Dash = ({setSeccionTitle}) => {
     });
 
   return (
-    <div>Dash</div>
+    <div className='w-full h-full'>
+      <img src='/src/images/bienvenidos.jpg' className='w-3/6 m-auto'/>
+    </div>
   )
 }
 

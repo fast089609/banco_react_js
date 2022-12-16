@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Transition from '../utils/Transition';
 
 import UserAvatar from '../../images/foto_julian.jpg';
-import { faBuilding, faClose, faCog, faCogs, faDoorClosed } from '@fortawesome/free-solid-svg-icons';
+import { faBuilding, faClose, faCog, faCogs, faDoorClosed, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { validateRol } from '../utils/Utils';
 
@@ -93,6 +93,15 @@ function UserMenu() {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
                 <FontAwesomeIcon icon={faCog} className="mr-3" /> Configuracion
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3 hover:bg-green-100 cursor-pointer"
+                to="/billeteras"
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+              >
+                <FontAwesomeIcon icon={faWallet} className="mr-3" /> Billeteras
               </Link>
             </li>
             <li>

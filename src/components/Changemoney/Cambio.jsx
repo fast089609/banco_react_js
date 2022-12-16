@@ -3,77 +3,123 @@ import Selector from "./Selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBillTransfer } from "@fortawesome/free-solid-svg-icons";
 import cambioImg from "./../../images/tipo-de-cambio.png";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import helpAxios from "../utils/helpAxios";
+import captureHelpAxiosAuth from "../utils/captureHelpAxiosAuth";
 
 const Cambio = () => {
   const [monedas, setMonedas] = useState([]);
-  const [cambioMonedas, setCambioMonedas] = useState(null);
+  const [cambioMonedas, setCambioMonedas] = useState([]);
   const [cantidadiCambiar, setCantidadCambiar] = useState(0);
 
-  const [status_moneda, SelectMonedas] = Selector(
-    "Elige tu moneda Inicial",
-    monedas
-  );
-  const [status_monedas_cambio, SelectMonedasCambio] = Selector(
-    "Elige tu moneda Destino",
-    monedas
-  );
-
-  const DarResultadosMonedas = () => {
-    if (
-      status_moneda != "" &&
-      status_monedas_cambio != "" &&
-      cantidadiCambiar != "" &&
-      cantidadiCambiar != 0
-    ) {
-      CambiarApi();
-    } else {
-      setCambioMonedas(null);
-    }
-  };
-
-  const CambiarApi = async () => {
-    const url = `https://api.fastforex.io/convert?from=${status_moneda}&to=${status_monedas_cambio}&amount=${cantidadiCambiar}&api_key=2626194042-c3fed002a7-rfht2r`;
-    const respuesta = await fetch(url);
-    const resultado = await respuesta.json();
-    console.log(resultado);
-    setCambioMonedas(resultado);
-  };
+  const navigate = useNavigate();
 
   const consultarApi = async () => {
-    const url =
-      "https://api.fastforex.io/currencies?api_key=2626194042-c3fed002a7-rfht2r";
-    const respuesta = await fetch(url);
-    const resultado = await respuesta.json();
-    console.log("api");
-    console.log(Object.keys(resultado.currencies));
-    const array_monedas = [];
-    Object.keys(resultado.currencies).forEach((simbolo) => {
-      if (resultado.currencies[simbolo] != null) {
-        const objeto = {
-          id: simbolo,
-          nombre: simbolo + " - " + resultado.currencies[simbolo],
-        };
-        array_monedas.push(objeto);
+    helpAxios(true).get('/api/monedas/obtenerMonedasComprar')
+    .then(function ({data}) {
+      setCambioMonedas(data);
+    })
+    .catch(function (error) {
+      captureHelpAxiosAuth(error);
+      if(error.response.status == 400){
+          setError(error.response.data.msg);
       }
     });
 
-    setMonedas(array_monedas);
+    helpAxios(true).get('/api/billeteras/obtenerBilleteras/')
+    .then(function ({data}) {
+      setMonedas(data);
+    })
+    .catch(function (error) {
+      captureHelpAxiosAuth(error);
+      if(error.response.status == 400){
+          setError(error.response.data.msg);
+      }
+    });
   };
+
+
+  const [datos, setDatos] = useState({
+    'moneda_id': '',
+    'monto': 0,
+    'moneda_destino': ''
+  });
 
   useEffect(() => {
     consultarApi();
   }, []);
 
-  useEffect(() => {
-    DarResultadosMonedas();
-  }, [status_monedas_cambio, cantidadiCambiar, status_moneda]);
+  const handleInputChange = (e) => {
+    let {name, value} = e.target;
+    if(name == 'moneda_id'){
+        monedas.forEach(moneda => {
+          if(moneda.moneda_id._id == value){
+            setMaximaCantidad(moneda.monto);
+            setNombreCorto(moneda.moneda_id.nombre_corto);
+        }
+        });
+    }
+    let newDatos = {...datos, [name]: value};
+    setDatos(newDatos);
+  };
+
+  const [maxima_cantidad, setMaximaCantidad] = useState(0);
+  const [nombre_corto_seleccionado, setNombreCorto] = useState('');
+  
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(!e.target.checkValidity()){
+        console.log("no validado");
+    }else{
+        helpAxios(true).post('/api/monedas/cambiarMonedas', datos)
+        .then(function (response) {
+            Swal.fire( 
+            'Cambio Exitoso',
+            'Moneda cambiada correctamente',
+            'success')
+            .then((respuesta) =>{
+            navigate('/billeteras');
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+            if(error.response.data.msg != undefined){
+                setError(error.response.data.msg);
+            }
+        });
+    }
+  }
 
   return (
-    <div className="">
-      <div className="flex w-5/6 grid-cols-3 gap-10 mx-auto mt-10">
-        <div className="">
-          <SelectMonedas />
+    <form className="" onSubmit={handleSubmit}>
+        <div className={"w-full text-center " + ((monedas.length == 0) ? '' : 'hidden')}>
+            <h1 className="text-3xl text-red-700 font-bold">No tiene monedas para vender</h1>
         </div>
+      <div className={"flex w-5/6 grid-cols-3 gap-10 mx-auto mt-10 " + ((monedas.length == 0) ? 'hidden' : '')}>
+          <div className="">
+              <span className="text-black text-2xl">Elige la moneda a cambiar</span>
+              <select
+                  className="w-full mt-1 rounded-xl cursor-pointer shadow-md border-green-500 active:border-green-900 focus:border-green-900  selection:border-green-900 text-green-700 font-semibold text-xl"
+                  placeholder="Seleccione"
+                  value={datos.moneda_id || ''}
+                  onChange={handleInputChange}
+                  required
+                  name="moneda_id"
+              >
+                  <option value="" className="text-green-700 font-semibold text-xl cursor-pointer my-2">Seleccione</option>
+                  {monedas.map((moneda) => (
+                  <option
+                      key={moneda.moneda_id._id}
+                      value={moneda.moneda_id._id}
+                      className="text-green-700 font-semibold text-xl cursor-pointer my-2"
+                  >
+                    {moneda.moneda_id.nombre_corto} - {moneda.moneda_id.nombre}
+                  </option>
+                  ))}
+              </select>
+          </div>
         <div className="w-3/6">
           <span className="text-black text-2xl">Cantidad a cambiar</span>
           <div className="relative text-gray-600 focus-within:text-gray-400">
@@ -89,52 +135,52 @@ const Cambio = () => {
               </button>
             </span>
             <input
-              type="number"
-              name="q"
-              className="py-2 text-green-700 pl-10 focus:text-green-900 font-semibold text-center w-full mt-1 rounded-xl cursor-pointer shadow-md border-green-500 active:border-green-900 focus:border-green-900  selection:border-green-900 text-xl"
-              placeholder="Dinero"
-              onChange={(e) => {
-                setCantidadCambiar(e.target.value);
-              }}
-              value={cantidadiCambiar}
+                type="number"
+                name="monto"
+                className="py-2 text-green-700 pl-10 focus:text-green-900 font-semibold text-center w-full mt-1 rounded-xl cursor-pointer shadow-md border-green-500 active:border-green-900 focus:border-green-900  selection:border-green-900 text-xl"
+                placeholder="Dinero"
+                onChange={handleInputChange}
+                value={datos.monto || 0}
+                max={maxima_cantidad}
+                min="1"
+                required
             />
           </div>
         </div>
         <div className="">
-          <SelectMonedasCambio />
+            <span className="text-black text-2xl">Elige la moneda de cambio</span>
+            <select
+                className="w-full mt-1 rounded-xl cursor-pointer shadow-md border-green-500 active:border-green-900 focus:border-green-900  selection:border-green-900 text-green-700 font-semibold text-xl"
+                placeholder="Seleccione"
+                value={datos.moneda_destino || ''}
+                onChange={handleInputChange}
+                required
+                name="moneda_destino"
+            >
+                <option value="" className="text-green-700 font-semibold text-xl cursor-pointer my-2">Seleccione</option>
+                {cambioMonedas.map((moneda) => (
+                <option
+                    key={moneda._id}
+                    value={moneda._id}
+                    className="text-green-700 font-semibold text-xl cursor-pointer my-2"
+                >
+                  {moneda.nombre_corto} - {moneda.nombre}
+                </option>
+                ))}
+            </select>
         </div>
       </div>
-      {cambioMonedas != null && (
-        <div className={"w-full"}>
-          <div className="w-3/5 grid-cols-3 gap-10 mx-auto mt-10 grid ">
-            <div className="text-center self-center rounded-md shadow-md shadow-purple-600 cursor-pointer hover:bg-purple-50">
-              <h1 className="text-7xl text-pink-600 font-semibold">
-                {status_moneda}
-              </h1>
-              <h1 className="text-7xl text-green-600 font-semibold">
-                {cantidadiCambiar}
-              </h1>
-            </div>
-            <div className="text-center self-center ">
-              <img src={cambioImg} className="w-56" />
-            </div>
-            <div className="text-center self-center rounded-md shadow-md shadow-purple-600 cursor-pointer hover:bg-purple-50">
-              <h1 className="text-7xl text-pink-600 font-semibold">
-                {status_monedas_cambio}
-              </h1>
-              <h1 className="text-7xl text-green-600 font-semibold">
-                {cambioMonedas.result[status_monedas_cambio]}
-              </h1>
-            </div>
+      <div className={"w-full " + ((monedas.length == 0) ? 'hidden' : '')}>
+          <div className={"w-full mb-4 mt-3" + (nombre_corto_seleccionado != '' ? '' : 'hidden')}>
+            <h1 className="text-green-800 text-center text-bold text-3xl">Tienes {maxima_cantidad} {nombre_corto_seleccionado}</h1>
           </div>
           <div className="w-full text-center mt-10">
-            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="button">
+            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
               Cambiar Monedas
             </button>
           </div>
         </div>
-      )}
-    </div>
+    </form>
   );
 };
 

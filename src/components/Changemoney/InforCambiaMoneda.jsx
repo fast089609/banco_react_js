@@ -9,6 +9,9 @@ import Cambio from "./Cambio";
 import Comprar from "./ComprarVender";
 import imagenComprar from "./../../images/venta-al-por-mayor.png";
 import imagenVender from "./../../images/vender_moneys.png";
+import { validateAuth } from "../utils/Utils";
+import ComprarMonedas from "./ComprarMonedas";
+import VenderMonedas from "./ComprarVender";
 
 const InforCambiaMoneda = () => {
   const [change, setSelectChange] = useState("");
@@ -78,7 +81,7 @@ const InforCambiaMoneda = () => {
           </div>
         </div>
       </div>
-      <div className="container px-5 py-4 mx-auto">
+      <div className={"container px-5 py-4 mx-auto " + (validateAuth() ? "" : "hidden")}>
         <div className="w-full lg:w-2/6 text-center mx-auto">
           <span className="text-green-700 font-semibold text-2xl">
             Que quieres Hacer?
@@ -117,8 +120,8 @@ const InforCambiaMoneda = () => {
         </div>
       </div>
       {parseInt(change) === 0 && <Cambio/>}
-      {parseInt(change) === 1 && <Comprar pasaObjetos={['Comprar Monedas', 'Elige tu moneda a Comprar', imagenComprar]} />}
-      {parseInt(change) === 2 && <Comprar pasaObjetos={['Vender Monedas', 'Elige tu moneda a Vender', imagenVender]} />}
+      {parseInt(change) === 1 && <ComprarMonedas pasaObjetos={['Comprar Monedas', 'Elige tu moneda a Comprar', imagenComprar]} />}
+      {parseInt(change) === 2 && <VenderMonedas pasaObjetos={['Vender Monedas', 'Elige tu moneda a Vender', imagenVender]} />}
     </section>
   );
 };

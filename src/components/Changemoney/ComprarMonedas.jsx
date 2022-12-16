@@ -8,16 +8,16 @@ import captureHelpAxiosAuth from "../utils/captureHelpAxiosAuth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const VenderMonedas = ({pasaObjetos}) => {
+const ComprarMonedas = ({pasaObjetos}) => {
   const [botonText, labelSelect, imagen] = pasaObjetos;
   const [monedas, setMonedas] = useState([]);
 
   const navigate = useNavigate();
 
   const consultarApi = async () => {
-    helpAxios(true).get('/api/billeteras/obtenerBilleteras/')
+    helpAxios(true).get('/api/monedas/obtenerMonedasComprar')
     .then(function ({data}) {
-      setMonedas(data);
+        setMonedas(data);
     })
     .catch(function (error) {
       captureHelpAxiosAuth(error);
@@ -41,9 +41,8 @@ const VenderMonedas = ({pasaObjetos}) => {
     let {name, value} = e.target;
     if(name == 'moneda_id'){
         monedas.forEach(moneda => {
-            if(moneda.moneda_id._id == value){
-                setMaximaCantidad(moneda.monto);
-                setNombreCorto(moneda.moneda_id.nombre_corto);
+            if(moneda._id == value){
+                setMaximaCantidad(moneda.cantidad);
             }
         });
     }
@@ -52,18 +51,18 @@ const VenderMonedas = ({pasaObjetos}) => {
   };
 
   const [maxima_cantidad, setMaximaCantidad] = useState(0);
-  const [nombre_corto_seleccionado, setNombreCorto] = useState('');
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!e.target.checkValidity()){
         console.log("no validado");
     }else{
-        helpAxios(true).post('/api/monedas/venderMonedas', datos)
+        helpAxios(true).post('/api/monedas/comprarMonedas', datos)
         .then(function (response) {
             Swal.fire( 
-            'Venta Exitosa',
-            'Moneda vendida correctamente',
+            'Compra Exitosa',
+            'Moneda comprada correctamente',
             'success')
             .then((respuesta) =>{
             navigate('/billeteras');
@@ -80,10 +79,7 @@ const VenderMonedas = ({pasaObjetos}) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <div className={"w-full text-center " + ((monedas.length == 0) ? '' : 'hidden')}>
-            <h1 className="text-3xl text-red-700 font-bold">No tiene monedas para vender</h1>
-        </div>
-      <div className={"grid w-5/6 grid-cols-2 gap-10 mx-auto mt-10 " + ((monedas.length == 0) ? 'hidden' : '')}>
+      <div className="grid w-5/6 grid-cols-2 gap-10 mx-auto mt-10">
         <div className="">
             <span className="text-black text-2xl">Elige la moneda a vender</span>
             <select
@@ -97,17 +93,17 @@ const VenderMonedas = ({pasaObjetos}) => {
                 <option value="" className="text-green-700 font-semibold text-xl cursor-pointer my-2">Seleccione</option>
                 {monedas.map((moneda) => (
                 <option
-                    key={moneda.moneda_id._id}
-                    value={moneda.moneda_id._id}
+                    key={moneda._id}
+                    value={moneda._id}
                     className="text-green-700 font-semibold text-xl cursor-pointer my-2"
                 >
-                  {moneda.moneda_id.nombre_corto} - {moneda.moneda_id.nombre}
+                  {moneda.nombre_corto} - {moneda.nombre}
                 </option>
                 ))}
             </select>
         </div>
         <div>
-            <span className="text-black text-2xl">Cantidad para vender</span>
+            <span className="text-black text-2xl">Cantidad para comprar</span>
             <div className="relative text-gray-600 focus-within:text-gray-400">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                 <button
@@ -134,10 +130,7 @@ const VenderMonedas = ({pasaObjetos}) => {
             </div>
         </div>
       </div>
-      <div className={"w-full text-center mt-10 " + ((monedas.length == 0) ? 'hidden' : '')}>
-        <div className={"w-full mb-4 backdrop:" + (nombre_corto_seleccionado != '' ? '' : 'hidden')}>
-                  <h1 className="text-green-800 text-center text-bold text-3xl">Tienes {maxima_cantidad} {nombre_corto_seleccionado}</h1>
-        </div>
+      <div className="w-full text-center mt-10">
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
           type="submit"
@@ -149,4 +142,4 @@ const VenderMonedas = ({pasaObjetos}) => {
   );
 };
 
-export default VenderMonedas;
+export default ComprarMonedas;

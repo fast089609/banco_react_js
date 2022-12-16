@@ -108,7 +108,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </h3>
             <ul className="mt-3">
               {/* Monedas */}
-              <SidebarLinkGroup activecondition={pathname === '/moneys' || pathname.includes('moneys')}>
+            <SidebarLinkGroup activecondition={pathname === '/moneys' || pathname.includes('moneys') || pathname.includes('movements')}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
@@ -144,7 +144,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                               end
                               to="/dash/moneys"
                               className={({ isActive }) =>
-                                'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
+                                'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + ((isActive || pathname.includes('moneys')) ? '!text-indigo-500' : '')
                               }
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 xl:opacity-100 duration-200">
@@ -155,7 +155,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
-                              to="/dash/moneys/movement"
+                              to="/dash/movements"
                               className={({ isActive }) =>
                                 'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
                               }
