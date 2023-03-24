@@ -33,5 +33,6 @@
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.5",
     "vite": "^2.9.9"
-  }
+  },
+  "homepage": "https://fast08960.github.io/banco_react_js/"
 }
